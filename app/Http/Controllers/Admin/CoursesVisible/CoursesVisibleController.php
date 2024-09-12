@@ -2,62 +2,64 @@
 
 namespace App\Http\Controllers\Admin\CoursesVisible;
 
-use App\Models\SubCourses;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Models\CoursesVisible;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
-use App\Models\SubCourseUserVisibility;
 
 class CoursesVisibleController extends Controller
 {
     public function index()
     {
-        $subCourses = CoursesVisible::orderBy('users_id', direction: 'asc')
-        ->orderBy('courses_id', 'asc')
-        ->get();
+        // Retrieve all courses visibility records and users
+        $subCourses = CoursesVisible::orderBy('users_id', 'asc')
+            ->orderBy('courses_id', 'asc')
+            ->get();
         $users = User::all();
         return view('Admin.visibality.index', compact('subCourses', 'users'));
     }
-    public function show_courses($users)
+
+    public function show_courses($userId)
     {
-        $subCourses = CoursesVisible::where('users_id', operator: $users)->get();
-        $visible = CoursesVisible::where('users_id', operator: $users)->orderBy('courses_id', 'asc')
-        ->get();
+        // Retrieve all courses visibility records for a specific user
+        $subCourses = CoursesVisible::where('users_id', $userId)->get();
+        $visible = CoursesVisible::where('users_id', $userId)->orderBy('courses_id', 'asc')->get();
         $users = User::all();
-        return view('Admin.visibality.show_courses', compact('subCourses', 'users','visible'));
+        return view('Admin.visibality.show_courses', compact('subCourses', 'users', 'visible'));
     }
-    public function updateVisibility(Request $request, $course_id)
+
+    public function updateVisibility(Request $request, $courseId)
     {
-        // Validation
+        // Validate the request
         $request->validate([
             'users_id' => 'required',
             'courses_id' => 'required',
             'sub_id' => 'required',
-            'is_visible' => 'required|boolean', // إضافة قاعدة boolean للتحقق من أن القيمة إما 0 أو 1
+            'is_visible' => 'required|boolean',
         ]);
 
-        // البحث عن الدورة بناءً على course_id
-        $saveCoursesVisible = CoursesVisible::where('courses_id', $course_id)->first();
+        // Find the course visibility record
+        $saveCoursesVisible = CoursesVisible::where('courses_id', $courseId)
+            ->where('users_id', $request->input('users_id'))
+            ->first();
 
         if ($saveCoursesVisible) {
-            // تحديث فقط حقل is_visible
+            // Update the visibility
             $saveCoursesVisible->update([
-                'is_visible' => $request->input('is_visible'), // الحصول على القيمة من الـ request
+                'is_visible' => $request->input('is_visible'),
             ]);
 
-            // إعادة التوجيه مع رسالة نجاح
+            // Redirect with success message
             return redirect()->back()->with('success', 'Visibility updated successfully.');
         }
 
-        // إذا لم يتم العثور على الدورة
+        // Redirect with error message if course not found
         return redirect()->back()->with('error', 'Course not found.');
     }
 
-    public function AddAllCourses($userId)
+    public function AddAllCourses(Request $request, $userId)
     {
         // Validate user existence
         $user = User::find($userId);
@@ -93,6 +95,4 @@ class CoursesVisibleController extends Controller
         // Redirect with success message
         return redirect()->back()->with('success', 'All courses have been added for the user successfully.');
     }
-
-
 }
