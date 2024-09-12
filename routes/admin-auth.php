@@ -88,6 +88,7 @@ Route::controller(SubCoursesController::class)->group(function(){
 });
     // ============================== Video CRUD end ==============================
     Route::get('/index', [CoursesVisibleController::class, 'index'])->name('admin.index');
-    Route::post('/visibility/update', [CoursesVisibleController::class, 'updateVisibility'])->name('admin.update-visibility');
-
+    Route::get('/index/{user_id}', [CoursesVisibleController::class, 'show_courses'])->name('admin.show');
+// تحديث حالة الرؤية باستخدام PUT
+Route::put('/visibility/update/{course_id}', [CoursesVisibleController::class, 'updateVisibility'])->name('admin.update-visibility');
 });

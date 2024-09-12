@@ -13,7 +13,8 @@ use App\Http\Controllers\Admin\SubSubCategory\SubSubCategoryController;
 class SubCoursesController extends Controller
 {
     public function Home($sub_subcategory){
-        $subcourses = SubSubCategory::where('sub_categories_id', operator: $sub_subcategory)->get();
+        $subcourses = SubCourses::where('sub_sub_categories_id', operator: $sub_subcategory)->get();
+
         return view('FrontEnd.Courses_section.courses',compact('subcourses'));
     }
     public function index(){

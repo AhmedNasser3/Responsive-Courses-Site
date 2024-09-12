@@ -6,7 +6,7 @@
             @if ($subcategory->is_visible == 0)
                 <h1>لا يمكنك الوصول الي الفديو يجب ان تدفع اولا.</h1>
             @else
-                <a class="sub_text_link" href="{{ url('subcourses/' . $subcategory->id) }}">
+                <a class="sub_text_link" href="{{ url('subcourses/' . $subcategory->courses_id) }}">
                     <div class="sub_data">
                         <div class="sub_content">
                             <div class="sub_text">

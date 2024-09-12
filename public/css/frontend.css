@@ -7,7 +7,8 @@
 
 .menu {
     height: 100vh;
-    background: #0a0a0a;
+    background: rgb(15, 15, 15);
+    background: radial-gradient(circle, rgba(15, 15, 15, 1) 0%, rgb(5, 0, 14) 100%);
 }
 
 .menu_data {
@@ -57,7 +58,14 @@
 
 .menu_text p {
     padding: 10px 0 0 0;
-    color: #ffffff;
+    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff, 0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+    color: #fccaff;
+    text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #fff6a9;
+    font-family: "Sacramento", cursive;
+    text-align: center;
+    animation: blink 12s infinite;
+    -webkit-animation: blink 12s infinite;
     font-size: 1.3rem;
     opacity: 0;
     filter: blur(5px);
@@ -110,7 +118,8 @@
 
 .info {
     height: 60vh;
-    background: #0a0a0a;
+    background: rgb(15, 15, 15);
+    background: radial-gradient(circle, rgba(15, 15, 15, 1) 0%, rgb(5, 0, 14) 100%);
 }
 
 .info_container {
@@ -125,7 +134,7 @@
 
 .info_data {
     cursor: pointer;
-    background: linear-gradient(to bottom, #131313 0%, #0a0a0a 100%);
+    background: linear-gradient(to bottom, #0a0a0a31 0%, #0a0a0a59 100%);
     padding: 0;
     width: 200px;
     height: 200px;
@@ -143,7 +152,14 @@
 }
 
 .info_data:hover {
-    background: linear-gradient(to bottom, #131313 0%, #34004d 100%);
+    text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff, 0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+    color: #fccaff;
+    text-shadow: 0 0 5px #c7c7c7, 0 0 15px #c7c7c7, 0 0 20px #c7c7c7, 0 0 40px #c7c7c7, 0 0 60px #c7c7c7, 0 0 10px #c7c7c7, 0 0 98px #c7c7c7;
+    color: #ffffff;
+    font-family: "Sacramento", cursive;
+    text-align: center;
+    animation: blink 12s infinite;
+    -webkit-animation: blink 12s infinite;
     border-radius: 20px;
     transition: all .5s ease;
 }
@@ -196,11 +212,13 @@
 /* about Me */
 
 .about_title_container {
-    background: #0a0a0a;
+    background: rgb(15, 15, 15);
+    background: radial-gradient(circle, rgba(15, 15, 15, 1) 0%, rgb(5, 0, 14) 100%);
 }
 
 .about_title {
-    background: #0a0a0a;
+    background: rgb(15, 15, 15);
+    background: radial-gradient(circle, rgba(15, 15, 15, 1) 0%, rgb(5, 0, 15) 100%);
     height: 25vh;
     display: grid;
     justify-content: center;
@@ -228,7 +246,8 @@
 
 .about {
     height: 40vh;
-    background: #0a0a0a;
+    background: rgb(15, 15, 15);
+    background: radial-gradient(circle, rgba(15, 15, 15, 1) 0%, rgb(5, 0, 14) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -301,9 +320,10 @@
 /* course */
 
 .course {
-    padding: 50px 0 0 0;
+    padding: 100px 0 100px 0;
     height: max-content;
-    background-color: #0a0a0a;
+    background: rgb(15, 15, 15);
+    background: radial-gradient(circle, rgba(15, 15, 15, 1) 0%, rgb(5, 0, 14) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -454,9 +474,14 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     font-size: 1rem;
-    background: var(--background-color);
+    background: transparent;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+}
+
+.social_container {
+    background: rgb(15, 15, 15);
+    background: radial-gradient(circle, rgba(15, 15, 15, 1) 0%, rgb(5, 0, 14) 100%);
 }
 
 .social {
@@ -498,7 +523,14 @@ body {
                 & a {
                     &:hover {
                         & i {
-                            color: var(--brand-color-html5);
+                            text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff, 0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+                            color: #fccaff;
+                            text-shadow: 0 0 5px #ff5b5b, 0 0 15px #ff5b5b, 0 0 20px #ff5b5b, 0 0 40px #ff7c7c, 0 0 60px #ff0000, 0 0 10px #ff5b5b, 0 0 98px #ff0000;
+                            color: #fff6a9;
+                            font-family: "Sacramento", cursive;
+                            text-align: center;
+                            animation: blink 12s infinite;
+                            -webkit-animation: blink 12s infinite;
                         }
                     }
                 }
@@ -507,7 +539,14 @@ body {
                 & a {
                     &:hover {
                         & i {
-                            color: var(--brand-color-css3);
+                            text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff, 0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+                            color: #fccaff;
+                            text-shadow: 0 0 5px #6ceeff, 0 0 15px #6ceeff, 0 0 20px #6ceeff, 0 0 40px #6ceeff, 0 0 60px #1034ff, 0 0 10px #003cff, 0 0 98px #2f00ff;
+                            color: #d9fffd;
+                            font-family: "Sacramento", cursive;
+                            text-align: center;
+                            animation: blink 12s infinite;
+                            -webkit-animation: blink 12s infinite;
                         }
                     }
                 }
@@ -516,7 +555,14 @@ body {
                 & a {
                     &:hover {
                         & i {
-                            color: var(--brand-color-nodejs);
+                            text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff, 0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+                            color: #fccaff;
+                            text-shadow: 0 0 5px #00ff95, 0 0 15px #00ff55, 0 0 20px #00ff37, 0 0 40px #00ff62, 0 0 60px #eeff00, 0 0 10px #5eff00, 0 0 98px #33ff00;
+                            color: #a9ffe2;
+                            font-family: "Sacramento", cursive;
+                            text-align: center;
+                            animation: blink 12s infinite;
+                            -webkit-animation: blink 12s infinite;
                         }
                     }
                 }
@@ -525,7 +571,14 @@ body {
                 & a {
                     &:hover {
                         & i {
-                            color: var(--brand-color-npm);
+                            text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff, 0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+                            color: #fccaff;
+                            text-shadow: 0 0 5px #ff5b5b, 0 0 15px #ff5b5b, 0 0 20px #ff5b5b, 0 0 40px #ff7c7c, 0 0 60px #ff0000, 0 0 10px #ff5b5b, 0 0 98px #ff0000;
+                            color: #fff6a9;
+                            font-family: "Sacramento", cursive;
+                            text-align: center;
+                            animation: blink 12s infinite;
+                            -webkit-animation: blink 12s infinite;
                         }
                     }
                 }
@@ -534,7 +587,14 @@ body {
                 & a {
                     &:hover {
                         & i {
-                            color: var(--brand-color-sass);
+                            text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff, 0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+                            color: #fccaff;
+                            text-shadow: 0 0 5px #ff5b5b, 0 0 15px #ff5b5b, 0 0 20px #ff5b5b, 0 0 40px #ff7c7c, 0 0 60px #ff0000, 0 0 10px #ff5b5b, 0 0 98px #ff0000;
+                            color: #fff6a9;
+                            font-family: "Sacramento", cursive;
+                            text-align: center;
+                            animation: blink 12s infinite;
+                            -webkit-animation: blink 12s infinite;
                         }
                     }
                 }
@@ -543,7 +603,14 @@ body {
                 & a {
                     &:hover {
                         & i {
-                            color: var(--brand-color-angular);
+                            text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff, 0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+                            color: #fccaff;
+                            text-shadow: 0 0 5px #ff5b5b, 0 0 15px #ff5b5b, 0 0 20px #ff5b5b, 0 0 40px #ff7c7c, 0 0 60px #ff0000, 0 0 10px #ff5b5b, 0 0 98px #ff0000;
+                            color: #fff6a9;
+                            font-family: "Sacramento", cursive;
+                            text-align: center;
+                            animation: blink 12s infinite;
+                            -webkit-animation: blink 12s infinite;
                         }
                     }
                 }
@@ -552,7 +619,14 @@ body {
                 & a {
                     &:hover {
                         & i {
-                            color: var(--brand-color-ionic);
+                            text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff, 0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+                            color: #fccaff;
+                            text-shadow: 0 0 5px #6ceeff, 0 0 15px #6ceeff, 0 0 20px #6ceeff, 0 0 40px #6ceeff, 0 0 60px #1034ff, 0 0 10px #003cff, 0 0 98px #2f00ff;
+                            color: #d9fffd;
+                            font-family: "Sacramento", cursive;
+                            text-align: center;
+                            animation: blink 12s infinite;
+                            -webkit-animation: blink 12s infinite;
                         }
                     }
                 }
@@ -680,14 +754,6 @@ body {
 
 
 /* video of course */
-
-.course {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200vh;
-    text-align: center;
-}
 
 @media screen and (max-width: 1024px) {
     video {
