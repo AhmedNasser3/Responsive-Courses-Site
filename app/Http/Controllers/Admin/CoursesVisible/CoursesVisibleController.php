@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin\CoursesVisible;
 
 use App\Models\SubCourses;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use App\Models\CoursesVisible;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Models\CoursesVisible;
 use Illuminate\Foundation\Auth\User;
 use App\Models\SubCourseUserVisibility;
 
