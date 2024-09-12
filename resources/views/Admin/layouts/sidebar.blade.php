@@ -41,6 +41,13 @@
        </a>
      </li>
      <li>
+     <li>
+     <li>
+       <a href="{{ route('admin.index') }}">
+        <i class="zmdi zmdi-format-list-bulleted"></i> <span>Edit Courses For Users</span>
+       </a>
+     </li>
+     <li>
        <a href="profile.html">
         <i class="fa-solid fa-user"></i> <span>حسابي</span>
        </a>

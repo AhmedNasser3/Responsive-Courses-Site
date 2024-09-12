@@ -53,16 +53,14 @@
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Subcategory Table</h5>
+            <h5 class="card-title">              <h5 class="card-title">تفعيل الكورسات للطلاب</h5>
+        </h5>
             <div class="mb-3">
-              <a href="{{ route('subcategory.create') }}" class="btn-custom">
-                New Subcategory Table
-              </a>
               <!-- Add button for adding all courses to the user -->
               <form action="{{ route('admin.add-all-courses', ['userId' => $userId]) }}" method="POST" style="display:inline;">
                 @csrf
                 <button type="submit" class="btn-add-all-courses">
-                  Add All Courses for User
+                  اضف جميع الكورسات للطالب
                 </button>
               </form>
             </div>
@@ -71,8 +69,9 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">User ID</th>
-                    <th scope="col">Show Courses</th>
+                    <th scope="col">المستخدم</th>
+                    <th scope="col">الحصة</th>
+                    <th scope="col">المحاضرة</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -84,6 +83,9 @@
                     <td style="color: {{ $subCourses->is_visible ? '#8fff8f' : 'rgb(187, 21, 21)' }}">
                       {{ $subCourses->subcategory_visible->title ?? 'N/A' }}
                     </td>
+                    <td style="color: {{ $subCourses->is_visible ? '#8fff8f' : 'rgb(187, 21, 21)' }}">
+                      {{ $subCourses->scategory_visible->subcategory_title ?? 'N/A' }}
+                    </td>
                     <td>
                       <form action="{{ route('admin.update-visibility', ['course_id' => $subCourses->subcategory_visible->id]) }}" method="POST">
                         @csrf
@@ -94,7 +96,7 @@
                         <input type="hidden" name="is_visible" value="{{ $subCourses->is_visible == 0 ? 1 : 0 }}">
                         <button type="submit" style="background: none; border: none; cursor: pointer;">
                           <span class="toggle-btn {{ $subCourses->is_visible ? 'activate' : 'deactivate' }}">
-                            {{ $subCourses->is_visible ? 'Deactivate' : 'Activate' }}
+                            {{ $subCourses->is_visible ? 'ايقاف الحصة' : 'تفعيل الحصة' }}
                           </span>
                         </button>
                       </form>

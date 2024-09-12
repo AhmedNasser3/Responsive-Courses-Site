@@ -60,8 +60,7 @@
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">subcategory Table</h5>
-              <button style="background: white; color:#131313; padding: 10px 15px;border:none;" class="card-title" ><a style=" color:#131313;" href={{route('subcategory.create')}}>New subcategory Table</a></button>
+              <h5 class="card-title">تفعيل الكورسات للطلاب</h5>
 			  <div class="table-responsive">
                <table class="table">
                   <thead>

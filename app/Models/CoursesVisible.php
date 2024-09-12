@@ -32,6 +32,9 @@ class CoursesVisible extends Model
     public function subcategory_visible() {
         return $this->belongsTo(SubSubCategory::class, 'courses_id', 'id');
     }
+    public function scategory_visible() {
+        return $this->belongsTo(SubCategory::class, 'sub_id', ownerKey: 'id');
+    }
     public function sub_id() {
         return $this->belongsTo(SubSubCategory::class, 'sub_id', 'id');
     }
