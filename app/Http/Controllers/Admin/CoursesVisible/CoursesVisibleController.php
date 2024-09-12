@@ -8,6 +8,7 @@ use App\Models\CoursesVisible;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
 
 class CoursesVisibleController extends Controller
 {
@@ -23,12 +24,12 @@ class CoursesVisibleController extends Controller
 
     public function show_courses($userId)
     {
-        // Retrieve all courses visibility records for a specific user
         $subCourses = CoursesVisible::where('users_id', $userId)->get();
         $visible = CoursesVisible::where('users_id', $userId)->orderBy('courses_id', 'asc')->get();
         $users = User::all();
-        return view('Admin.visibality.show_courses', compact('subCourses', 'users', 'visible'));
+        return view('Admin.visibality.show_courses', compact('subCourses', 'users', 'visible', 'userId'));
     }
+
 
     public function updateVisibility(Request $request, $courseId)
     {
@@ -59,40 +60,52 @@ class CoursesVisibleController extends Controller
         return redirect()->back()->with('error', 'Course not found.');
     }
 
-    public function AddAllCourses(Request $request, $userId)
+    public function AddAllCourses($userId)
     {
-        // Validate user existence
+        // تحقق من وجود المستخدم
         $user = User::find($userId);
         if (!$user) {
             return redirect()->back()->with('error', 'User not found.');
         }
 
-        // Get all course IDs
-        $allCourses = CoursesVisible::select('courses_id')->distinct()->pluck('courses_id');
+        // الحصول على جميع الكورسات الخاصة بالمستخدم الحالي
+        $authUserCourses = CoursesVisible::where('users_id', Auth::id())
+            ->select('courses_id', 'sub_id')
+            ->distinct()
+            ->get();
 
-        // Get all subcategory IDs
-        $allSubCategories = SubCategory::pluck('id');
-
-        // Prepare data to insert
+        // تحضير البيانات لإدخالها
         $newCoursesForUser = [];
 
-        foreach ($allCourses as $courseId) {
-            foreach ($allSubCategories as $subCategoryId) {
+        foreach ($authUserCourses as $course) {
+            // تحقق من عدم وجود إدخالات مكررة للمستخدم الحالي
+            $existingCourse = CoursesVisible::where([
+                ['users_id', '=', $userId],
+                ['courses_id', '=', $course->courses_id],
+                ['sub_id', '=', $course->sub_id]
+            ])->exists();
+
+            // أضف الدورة إذا لم تكن موجودة بالفعل
+            if (!$existingCourse) {
                 $newCoursesForUser[] = [
                     'users_id' => $userId,
-                    'courses_id' => $courseId,
-                    'sub_id' => $subCategoryId,
-                    'is_visible' => 1, // Set the visibility as required
+                    'courses_id' => $course->courses_id,
+                    'sub_id' => $course->sub_id,
+                    'is_visible' => 0, // تعيين الرؤية كما هو مطلوب
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];
             }
         }
 
-        // Insert data into the database
-        CoursesVisible::insert($newCoursesForUser);
+        // إدخال البيانات الجديدة في قاعدة البيانات
+        if (count($newCoursesForUser) > 0) {
+            CoursesVisible::insert($newCoursesForUser);
+        }
 
-        // Redirect with success message
+        // إعادة التوجيه مع رسالة النجاح
         return redirect()->back()->with('success', 'All courses have been added for the user successfully.');
     }
+
+
 }

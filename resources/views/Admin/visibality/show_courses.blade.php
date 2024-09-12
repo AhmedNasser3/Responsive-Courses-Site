@@ -16,6 +16,18 @@
     color: #0056b3;
     text-decoration: underline;
   }
+  .btn-add-all-courses {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .btn-add-all-courses:hover {
+    background-color: #0056b3;
+  }
   .table td {
     vertical-align: middle;
   }
@@ -42,9 +54,18 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Subcategory Table</h5>
-            <a href="{{ route('subcategory.create') }}" class="btn-custom">
-              New Subcategory Table
-            </a>
+            <div class="mb-3">
+              <a href="{{ route('subcategory.create') }}" class="btn-custom">
+                New Subcategory Table
+              </a>
+              <!-- Add button for adding all courses to the user -->
+              <form action="{{ route('admin.add-all-courses', ['userId' => $userId]) }}" method="POST" style="display:inline;">
+                @csrf
+                <button type="submit" class="btn-add-all-courses">
+                  Add All Courses for User
+                </button>
+              </form>
+            </div>
             <div class="table-responsive mt-3">
               <table class="table table-striped">
                 <thead>
