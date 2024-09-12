@@ -90,5 +90,8 @@ Route::controller(SubCoursesController::class)->group(function(){
     Route::get('/index', [CoursesVisibleController::class, 'index'])->name('admin.index');
     Route::get('/index/{user_id}', [CoursesVisibleController::class, 'show_courses'])->name('admin.show');
 // تحديث حالة الرؤية باستخدام PUT
-Route::put('/visibility/update/{course_id}', [CoursesVisibleController::class, 'updateVisibility'])->name('admin.update-visibility');
+Route::put('/visibility/update/{course_id}', action: [CoursesVisibleController::class, 'updateVisibility'])->name('admin.update-visibility');
+Route::put('/visibility/update/{course_id}', action: [CoursesVisibleController::class, 'updateVisibility'])->name('admin.update-visibility');
+// إضافة جميع الكورسات لمستخدم معين
+Route::post('/add-all-courses/{user_id}', [CoursesVisibleController::class, 'AddAllCourses'])->name('admin.add-all-courses');
 });

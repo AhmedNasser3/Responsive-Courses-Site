@@ -28,7 +28,7 @@
                   @foreach($visible as $key => $subCourses)
                   <tr>
                     <td>{{$key+1}}</td>
-                    <td>{{$subCourses->users->name}}</td>
+                    <td>{{$subCourses['users']['name']}}</td>
                     @if ($subCourses->is_visible == 0)
                     <td style="color: rgb(187, 21, 21)">{{$subCourses->subcategory_visible->title}}</td>
                     @else
@@ -46,7 +46,7 @@
 
                         <!-- زر تفعيل/إلغاء التفعيل -->
                         <button type="submit" style="background: none; border: none; cursor: pointer;">
-                          <span class="toggle-btn" style="background-color: {{ $subCourses->is_visible ? '#007bff' : '#ccc' }}; padding: 10px; color: white;">
+                          <span class="toggle-btn" style="background-color: {{ $subCourses->is_visible ? 'green' : 'red' }}; padding: 10px; color: white;">
                             {{ $subCourses->is_visible ? 'Deactivate' : 'Activate' }}
                           </span>
                         </button>

@@ -25,6 +25,9 @@ class CoursesVisible extends Model
     public function users(){
     	return $this->belongsTo(User::class,'users_id',ownerKey: 'id');
     }
+    public function users_id(){
+    	return $this->belongsTo(User::class,'id',ownerKey: 'id');
+    }
 
     public function subcategory_visible() {
         return $this->belongsTo(SubSubCategory::class, 'courses_id', 'id');
