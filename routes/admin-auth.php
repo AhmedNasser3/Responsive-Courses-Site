@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\SubCourses\SubCoursesController;
 use App\Http\Controllers\Admin\SubCategory\SubCategoryController;
 use App\Http\Controllers\Admin\CoursesVisible\CoursesVisibleController;
+use App\Http\Controllers\Admin\Forum\ForumController;
 use App\Http\Controllers\Admin\SubSubCategory\SubSubCategoryController;
 
 Route::prefix('admin')->middleware('guest:admin')->group(function () {
@@ -37,9 +38,6 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     // ============================== Hero end ==============================
 
 
-
-
-
     // ============================== Category ==============================
     Route::controller(CategoryController::class)->group(function(){
         Route::get('/category', 'CategoryView')->name('category.index');
@@ -63,8 +61,6 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     });
     // ============================== SubCategory end ==============================
 
-
-
     // ============================== Sub SubCategory ==============================
     Route::controller(SubSubCategoryController::class)->group(function(){
         Route::get('/sub_subcategory', 'index')->name('sub_subcategory.index');
@@ -87,10 +83,25 @@ Route::controller(SubCoursesController::class)->group(function(){
     Route::delete('/subcourses/{subcourses}', 'delete')->name('subcourses.delete');
 });
     // ============================== Video CRUD end ==============================
-    Route::get('/index', [CoursesVisibleController::class, 'index'])->name('admin.index');
-    Route::get('/index/{user_id}', [CoursesVisibleController::class, 'show_courses'])->name('admin.show');
-// تحديث حالة الرؤية باستخدام PUT
-Route::put('/visibility/update/{course_id}', action: [CoursesVisibleController::class, 'updateVisibility'])->name('admin.update-visibility');
-// إضافة جميع الكورسات لمستخدم معين
-Route::post('/add-all-courses/{userId}', [CoursesVisibleController::class, 'AddAllCourses'])->name('admin.add-all-courses');
+
+
+    // ============================== Courses Visible ==============================
+    Route::controller(CoursesVisibleController::class)->group(function(){
+    Route::get('/index', 'index')->name('admin.index');
+    Route::get('/index/{user_id}', 'show_courses')->name('admin.show');
+    Route::put('/visibility/update/{course_id}', action: 'updateVisibility')->name('admin.update-visibility');
+    Route::post('/add-all-courses/{userId}', 'AddAllCourses')->name('admin.add-all-courses');
+    });
+    // ============================== Courses Visible end ==============================
+
+
+    // ============================== Forum ==============================
+    Route::controller(ForumController::class)->group(function(){
+        Route::get('/forum', action: 'index')->name('admin.forum.index');
+        // Route::get('/index/{user_id}', 'show_courses')->name('admin.show');
+        // Route::put('/visibility/update/{course_id}', action: 'updateVisibility')->name('admin.update-visibility');
+        // Route::post('/add-all-courses/{userId}', 'AddAllCourses')->name('admin.add-all-courses');
+        });
+    // ============================== Forum End ==============================
+
 });

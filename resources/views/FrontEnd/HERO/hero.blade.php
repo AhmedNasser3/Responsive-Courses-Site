@@ -96,7 +96,7 @@
 
 
 {{-- About Me --}}
-<div class="about_title_container">
+<div id="about" class="about_title_container">
     <div class="about_title">
         <h1>عني</h1>
         <div class="about_discription">

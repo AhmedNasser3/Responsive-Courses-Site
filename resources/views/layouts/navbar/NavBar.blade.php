@@ -1,3 +1,7 @@
+@php
+use App\Models\Category;
+   $category =  Category::all();
+@endphp
 <header class="header">
     <nav class="container nav">
         <div class="nav__data">
@@ -15,7 +19,7 @@
             <ul class="nav__list">
                 <li><a href="/"  style="text-decoration: none"  style="text-decoration: none" class="nav__link">رئيسية</a></li>
 
-                <li><a href="#"  style="text-decoration: none"  class="nav__link">عني</a></li>
+                <li><a href="#about"  style="text-decoration: none"  class="nav__link">عني</a></li>
 
                 <!--=============== DROPDOWN 1 ===============-->
                 <li class="dropdown__item">
@@ -24,32 +28,13 @@
                     </div>
 
                     <ul class="dropdown__menu">
+                        @foreach ($category as $category)
                         <li>
                             <a href="#"  style="text-decoration: none"  class="dropdown__link">
-                                <i class="ri-pie-chart-line"></i> HTML
+                                <i class="ri-arrow-up-down-line"></i> {{ $category->category_title }}
                             </a>
                         </li>
-
-                        <li>
-                            <a href="#"  style="text-decoration: none"  class="dropdown__link">
-                                <i class="ri-arrow-up-down-line"></i> CSS
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"  style="text-decoration: none"  class="dropdown__link">
-                                <i class="ri-arrow-up-down-line"></i> JS
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"  style="text-decoration: none"  class="dropdown__link">
-                                <i class="ri-arrow-up-down-line"></i> REACT
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"  style="text-decoration: none"  class="dropdown__link">
-                                <i class="ri-arrow-up-down-line"></i> PHP LARAVEL
-                            </a>
-                        </li>
+                        @endforeach
 
                         <!--=============== DROPDOWN SUBMENU ===============-->
                     </ul>
