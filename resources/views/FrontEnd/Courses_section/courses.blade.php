@@ -5,7 +5,6 @@
             <div class="course_data">
                 <div class="course_content">
                     @foreach ($subcourses as $subcourses)
-
                     <div class="course_img">
                         <video width="1000" height="700" controls controlslist="nodownload noplaybackrate noremoteplayback" disablePictureInPicture>
                             <source src="{{ asset('storage/videos/' . $subcourses->video) }}" type="video/mp4">

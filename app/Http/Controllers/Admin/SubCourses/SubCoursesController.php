@@ -28,33 +28,46 @@ class SubCoursesController extends Controller
         return view('Admin.subcourses.create',compact('sub_subcategories'));
     }
     public function store(Request $request){
-
-
+        // Validate input fields
         $request->validate([
             'sub_sub_categories_id' => 'required',
             'title' => 'required',
             'description' => 'required',
+            'video' => 'nullable|mimes:mp4,mov,ogg|max:50000', // Validate video file if provided
         ]);
 
-            $request->hasFile('video');
+        if ($request->hasFile('video')) {
             $videoFile = $request->file('video');
-         $filename = hexdec(uniqid()).'.'.$videoFile->getClientOriginalExtension();
-        $videoFile->storeAs('public/videos', $filename);
+            $filename = hexdec(uniqid()) . '.' . $videoFile->getClientOriginalExtension();
+            $videoFile->storeAs('public/videos', $filename);
 
-        SubCourses::create([
-            'video' => $filename,
-            'sub_sub_categories_id' => $request->sub_sub_categories_id,
-            'title' => $request->title,
-            'description' => $request->description,
-            'created_at' => Carbon::now(),
-        ]);
+            // Save video path and other details
+            $subCourse = SubCourses::create([
+                'video' => $filename,
+                'sub_sub_categories_id' => $request->sub_sub_categories_id,
+                'title' => $request->title,
+                'description' => $request->description,
+                'created_at' => Carbon::now(),
+            ]);
 
+            return redirect()->back();
+        } else if ($request->has('video_path')) {
+            // If only saving the video path
+            SubCourses::create([
+                'video' => $request->video_path,
+                'sub_sub_categories_id' => $request->sub_sub_categories_id,
+                'title' => $request->title,
+                'description' => $request->description,
+                'created_at' => Carbon::now(),
+            ]);
 
+            return redirect()->back();
+        } else {
+            return redirect()->back();
+        }
 
-        return redirect()->route('video.index');
+    }
 
-
-}
     public function edit(){}
     public function update(){}
     public function delete($id){

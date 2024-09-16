@@ -11,7 +11,7 @@ use App\Http\Controllers\UvoloxController;
 
 
 Route::controller(UvoloxController::class)->group(function(){
-Route::get('/', 'dashboard')->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', 'dashboard')->name('dashboard');
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Hero;
 use App\Models\Hero;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\SubSubCategory;
 use Illuminate\Foundation\Auth\User;
 
 class HeroController extends Controller
@@ -13,7 +14,8 @@ class HeroController extends Controller
         $user = User::get();
         $countUsers = User::count();
         $hero = Hero::all();
-        return view('Admin.dash.dash', compact('hero', 'user','countUsers'));
+        $courses = SubSubCategory::all();
+        return view('Admin.dash.dash', compact('hero', 'user','countUsers', 'courses'));
     }
     public function index(){
         $hero_index = Hero::all();

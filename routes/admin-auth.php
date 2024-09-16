@@ -91,6 +91,7 @@ Route::controller(SubCoursesController::class)->group(function(){
     Route::get('/index/{user_id}', 'show_courses')->name('admin.show');
     Route::put('/visibility/update/{course_id}', action: 'updateVisibility')->name('admin.update-visibility');
     Route::post('/add-all-courses/{userId}', 'AddAllCourses')->name('admin.add-all-courses');
+    Route::delete('/delete/{userId}', 'UsersDelete')->name('admin.users.delete');
     });
     // ============================== Courses Visible end ==============================
 

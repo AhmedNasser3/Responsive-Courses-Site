@@ -108,4 +108,11 @@ class CoursesVisibleController extends Controller
     }
 
 
+    public function UsersDelete($id){
+        $users = User::findOrFail($id);
+        $users->delete();
+        return redirect()->back()->with('success', 'User deleted successfully.');
+    }
+
+
 }

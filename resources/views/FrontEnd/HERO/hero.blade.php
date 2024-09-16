@@ -70,7 +70,9 @@
     animation: blink 12s infinite;
     -webkit-animation: blink 12s infinite;" class="fa-solid fa-computer"></i>
                     <h1>كورسات</h1>
-                    <p>6</p>
+                    @foreach ($courses as $key => $courses )
+                    <p>{{ $key+1 }}</p>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -128,7 +130,7 @@
 </div>
 
 {{-- Courses --}}
-<div class="about_title_container">
+<div id="courses" class="about_title_container">
     <div class="about_title">
         <h1>كورسات</h1>
         <div class="about_discription">
@@ -143,7 +145,7 @@
         </div>
     </div>
 </div>
-<div class="course">
+<div  class="course">
     <div class="course_container">
         <div class="course_data">
             @foreach ($category as $category)

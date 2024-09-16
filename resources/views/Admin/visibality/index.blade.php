@@ -44,15 +44,6 @@
     }
 </style>
 
-
-
-
-
-
-
-
-
-
 <div class="clearfix"></div>
   <div class="content-wrapper">
     <div class="container-fluid">
@@ -68,6 +59,7 @@
                       <th scope="col">#</th>
                       <th scope="col">User ID</th>
                       <th scope="col">Show Courses</th>
+                      <th scope="col">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -76,6 +68,13 @@
                       <td>{{$key+1}}</td>
                       <td>{{$users->name}}</td>
                       <td><button class="btn-color"><a href={{ '/admin/index/'.$users->id}}>تعديل الكورسات</a></button></td>
+                      <td>
+                        <form action="{{ route('admin.users.delete', ['userId' => $users->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE') <!-- تحديد أن هذا الطلب هو حذف -->
+                            <input type="submit" value="مسح" style="background: rgb(136, 36, 36);border:none">
+                        </form>
+                    </td>
                       </tr>
                       @endforeach
                   </tbody>
