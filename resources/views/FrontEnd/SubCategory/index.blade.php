@@ -1,5 +1,25 @@
 @extends('FrontEnd.master')
 @section('content')
+@if (!Auth::check())
+
+<style>
+    .error_bg{
+        background: rgb(15, 15, 15);
+        height: 100vh;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+    }
+</style>
+<div class="error_bg">
+    <h1>يجب تسجيل دخولك اولا للاشتراك في الكورس</h1>
+    <h3>اضغط علي علامة الواتس اب بالاسفل علي اليمين للتواصل معنا والاشتراك بالكورس</h3>
+    <div style="background: white; padding:10px 20px;">
+        <a href="{{ route('login') }}" style="font-size:1.2rem;color: rgb(0, 0, 0); text-decoration:none; padding:10px 20px">تسجيل الدخول</a>
+    </div>
+</div>
+    @else
 <div class="sub">
     <div class="sub_container">
         @foreach ($subcategories as $subcategory)
@@ -17,4 +37,5 @@
         @endforeach
     </div>
 </div>
+@endif
 @endsection

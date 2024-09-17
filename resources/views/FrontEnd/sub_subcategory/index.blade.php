@@ -1,24 +1,54 @@
 @extends('FrontEnd.master')
 @section('content')
+
 <div class="sub">
     <div class="sub_container">
-        @foreach ($visible_courses as $subcategory)
-            @if ($subcategory->is_visible == 0)
-                <h1>لا يمكنك الوصول الي الفديو يجب ان تدفع اولا.</h1>
-            @else
-                <a class="sub_text_link" href="{{ url('subcourses/' . $subcategory->courses_id) }}">
-                    <div class="sub_data">
-                        <div class="sub_content">
-                            <div class="sub_text">
-                                <h1>{{ $subcategory['subcategory_visible']['title'] }}</h1>
-                                <p>{{ $subcategory['subcategory_visible']['description'] }}</p>
+        @if (!$hasCourses)
+            {{-- عرض رسالة الاتصال إذا لم يكن لدى المستخدم بيانات --}}
+            <h1>لا توجد بيانات متاحة حالياً. يرجى <a href="{{ url('contact') }}">التواصل معنا</a> للاشتراك في الكورس.</h1>
+        @else
+            @php
+                $hiddenMessageShown = false; // متغير لتتبع إذا تم عرض الرسالة
+            @endphp
+
+            @foreach ($visible_courses as $key => $subcategory)
+                {{-- عرض الفيديو الأول --}}
+                @if ($key == 0)
+                    <a class="sub_text_link" href="{{ url('subcourses/' . $subcategory->courses_id) }}">
+                        <div class="sub_data">
+                            <div class="sub_content">
+                                <div class="sub_text">
+                                    <h1>{{ $subcategory['subcategory_visible']['title'] }}</h1>
+                                    <p>{{ $subcategory['subcategory_visible']['description'] }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-
-            @endif
-        @endforeach
+                    </a>
+                @else
+                    {{-- إخفاء الفيديوهات الأخرى إذا كانت غير مرئية --}}
+                    @if ($subcategory->is_visible == 0 && !$hiddenMessageShown)
+                        {{-- عرض الرسالة مرة واحدة فقط --}}
+                        <h1>الحصة الأولى مجانية، يجب الدفع للحصول على باقي الحصص</h1>
+                        @php
+                            $hiddenMessageShown = true; // تم عرض الرسالة
+                        @endphp
+                    @elseif ($subcategory->is_visible == 1)
+                        {{-- عرض الفيديوهات المرئية --}}
+                        <a class="sub_text_link" href="{{ url('subcourses/' . $subcategory->courses_id) }}">
+                            <div class="sub_data">
+                                <div class="sub_content">
+                                    <div class="sub_text">
+                                        <h1>{{ $subcategory['subcategory_visible']['title'] }}</h1>
+                                        <p>{{ $subcategory['subcategory_visible']['description'] }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    @endif
+                @endif
+            @endforeach
+        @endif
     </div>
 </div>
+
 @endsection

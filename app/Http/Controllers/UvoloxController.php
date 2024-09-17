@@ -17,7 +17,7 @@ class UvoloxController extends Controller
         $subcategory = SubCategory::all();
         $user = User::count();
         $hero_menu = Hero::all();
-        $courses = SubSubCategory::all();
+        $courses = SubSubCategory::count();
         return view('FrontEnd.HERO.hero', compact('hero_menu','user','category','subcategory','courses'));
     }
 

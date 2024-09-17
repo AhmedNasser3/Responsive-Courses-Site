@@ -70,9 +70,7 @@
     animation: blink 12s infinite;
     -webkit-animation: blink 12s infinite;" class="fa-solid fa-computer"></i>
                     <h1>كورسات</h1>
-                    @foreach ($courses as $key => $courses )
-                    <p>{{ $key+1 }}</p>
-                    @endforeach
+                    <p>{{ $courses }}</p>
                 </div>
             </div>
         </div>
@@ -88,7 +86,7 @@
     animation: blink 12s infinite;
     -webkit-animation: blink 12s infinite;" class="fa-solid fa-bars-progress"></i>
                     <h1>بروجيكت</h1>
-                    <p>122</p>
+                    <p>0</p>
                 </div>
             </div>
         </div>
@@ -170,7 +168,6 @@
 
 
 {{-- icons --}}
-<link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
 </head>
 <div class="social_container">
 <div class="social">
@@ -213,4 +210,5 @@
 		</ul>
     </div>
 </div>
+
 @endsection

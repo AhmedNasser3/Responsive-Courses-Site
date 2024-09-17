@@ -14,8 +14,9 @@ class SubSubCategoryController extends Controller
 {
     public function home($subcategory, $user_Id){
         $visible_courses = CoursesVisible::where('sub_id', $subcategory)->where('users_id', $user_Id)->get();
+        $hasCourses = $visible_courses->isNotEmpty();
 
-        return view('FrontEnd.sub_subcategory.index',compact('visible_courses'));
+        return view('FrontEnd.sub_subcategory.index',compact('visible_courses','hasCourses'));
     }
     public function index(){
         $sub_subcategory = SubSubCategory::all();
