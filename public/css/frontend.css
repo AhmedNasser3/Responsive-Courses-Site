@@ -60,8 +60,8 @@
     padding: 10px 0 0 0;
     text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff, 0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
     color: #fccaff;
-    text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
-    color: #fff6a9;
+    text-shadow: 0 0 5px #79c9ff, 0 0 15px #79c9ff, 0 0 20px #79c9ff, 0 0 40px #79c9ff, 0 0 60px #ffffff, 0 0 10px #0084ff, 0 0 98px #ffffff;
+    color: #ffffff;
     font-family: "Sacramento", cursive;
     text-align: center;
     animation: blink 12s infinite;

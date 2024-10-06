@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Rating;
 use App\Models\SubSubCategory;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Model;
@@ -21,5 +22,15 @@ class SubCourses extends Model
         return $this->belongsTo(SubSubCategory::class, 'sub_sub_categories_id',ownerKey: 'id');
     }
 
+
+    public function ratings()
+    {
+        return $this->hasMany(related: Rating::class);
+    }
+
+    public function averageRating()
+    {
+        return $this->ratings()->avg('rating');
+    }
 
 }

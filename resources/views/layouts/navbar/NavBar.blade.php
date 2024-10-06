@@ -2,6 +2,29 @@
 use App\Models\Category;
    $category =  Category::all();
 @endphp
+<style>
+
+.notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333; /* Dark gray background */
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            visibility: hidden;
+            z-index: 9999; /* Ensure it appears above other elements */
+        }
+
+        .notification.show {
+            opacity: 1;
+            visibility: visible;
+        }
+</style>
 <header class="header">
     <nav class="container nav">
         <div class="nav__data">
@@ -21,6 +44,11 @@ use App\Models\Category;
 
                 <li><a href="#about"  style="text-decoration: none"  class="nav__link">عني</a></li>
                 <li><a href="#courses"  style="text-decoration: none"  class="nav__link">كورسات</a></li>
+                @if (!Auth::check())
+                    @else
+                    <li  style="display: flex;"><span> <a  style="display: flex; padding:0 10px 0 0; text-decoration:none;" href="#" class="nav__link"><i class="fa-solid fa-copy"></i></a></span><a href="#" id="textToCopy"  style="text-decoration: none"  class="nav__link">{{Auth::user()->unique_code}}</a></li>
+                    <div id="notification" class="notification">تم نسخ الكود الخاص بيك</div>
+                @endif
 
                 <!--=============== DROPDOWN 1 ===============-->
                 {{-- <li class="dropdown__item">
@@ -80,4 +108,22 @@ use App\Models\Category;
             </ul>
         </div>
     </nav>
+
 </header>
+<script>
+    document.getElementById('textToCopy').addEventListener('click', function() {
+        // Use Clipboard API to copy text
+        navigator.clipboard.writeText(this.textContent).then(function() {
+            // Show the notification
+            var notification = document.getElementById('notification');
+            notification.classList.add('show');
+
+            // Hide the notification after 3 seconds
+            setTimeout(function() {
+                notification.classList.remove('show');
+            }, 3000);
+        }).catch(function(error) {
+            console.error('Error copying text: ', error);
+        });
+    });
+</script>

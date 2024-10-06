@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\Admin\Courses\CoursesController;
-use App\Http\Controllers\Admin\SubCategory\SubCategoryController;
-use App\Http\Controllers\Admin\SubCourses\SubCoursesController;
-use App\Http\Controllers\Admin\SubSubCategory\SubSubCategoryController;
-use App\Http\Controllers\Admin\Video\VideoController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UvoloxController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\Video\VideoController;
+use App\Http\Controllers\Admin\Rating\RatingController;
+use App\Http\Controllers\Admin\Courses\CoursesController;
+use App\Http\Controllers\Admin\SubCourses\SubCoursesController;
+use App\Http\Controllers\Admin\SubCategory\SubCategoryController;
+use App\Http\Controllers\Admin\SubSubCategory\SubSubCategoryController;
 
 
 Route::controller(UvoloxController::class)->group(function(){
@@ -29,6 +30,11 @@ Route::controller(SubSubCategoryController::class)->group(function(){
 Route::controller(SubCoursesController::class)->group(function(){
     Route::get('/subcourses/{subcourses}',  'home')->name('subcourses.home');
 });
+
+
+
+// rating
+Route::post('/subcourses/{subcourse}/ratings', action: [RatingController::class, 'store'])->name('ratings.store');
 
 
 Route::get('/user/courses', [SubCoursesController::class, 'showCourses'])->name('user.courses');

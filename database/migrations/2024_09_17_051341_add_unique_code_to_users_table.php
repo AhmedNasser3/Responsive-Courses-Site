@@ -11,20 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('forums', function (Blueprint $table) {
-            $table->id();
-            $table->string('user_id');
-            $table->string('title');
-            $table->string('description');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('unique_code')->unique()->nullable();
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('forums');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('unique_code');
+        });
     }
 };

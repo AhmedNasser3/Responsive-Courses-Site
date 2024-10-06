@@ -14,9 +14,9 @@
 		<div class="card-body">
 		<div class="card-title">Category Edit</div>
 		<hr>
-		<form method="get" action="{{route('category.update', ['category' => $category])}}" enctype="multipart/form-data">
+		<form method="POST" action="{{route('category.update', ['category' => $category])}}" enctype="multipart/form-data">
 		@csrf
-        @method('get')
+        @method('POST')
 		<div class="form-group">
 		<label for="input-1">title</label>
 		<input type="text" name="category_title" class="form-control" id="input-1" value="{{ $category->category_title }}" placeholder="Enter Your title">

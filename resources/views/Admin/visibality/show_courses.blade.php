@@ -64,7 +64,7 @@
                 </button>
               </form>
             </div>
-            <div class="table-responsive mt-3">
+            <div class="mt-3 table-responsive">
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -87,8 +87,8 @@
                       {{ $subCourses->scategory_visible->subcategory_title ?? 'N/A' }}
                     </td>
                     <td>
-                      <form action="{{ route('admin.update-visibility', ['course_id' => $subCourses->subcategory_visible->id]) }}" method="POST">
-                        @csrf
+                        <form action="{{ isset($subCourses->subcategory_visible) ? route('admin.update-visibility', ['course_id' => $subCourses->subcategory_visible->id]) : '#' }}" method="POST">
+                            @csrf
                         @method('PUT')
                         <input type="hidden" name="users_id" value="{{ $subCourses->users_id }}">
                         <input type="hidden" name="courses_id" value="{{ $subCourses->courses_id }}">

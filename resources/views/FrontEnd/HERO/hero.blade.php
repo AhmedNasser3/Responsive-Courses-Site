@@ -13,7 +13,8 @@
                 </div>
                 <div class="menu_text">
                     <h1>{{$hero->title}}</h1>
-                    <p>{{$hero->description}}</p>
+                    <p style="text-shadow: 0 0 5px #79c9ff, 0 0 15px #79c9ff, 0 0 20px #79c9ff, 0 0 40px #79c9ff, 0 0 60px #ffffff, 0 0 10px #0084ff, 0 0 98px #ffffff;
+                     color: #ffffff;">{{$hero->description}}</p>
                     </div>
                 </div>
             </div>

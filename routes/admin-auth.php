@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminRegisterController;
 use App\Http\Controllers\Admin\Hero\HeroController;
@@ -11,17 +10,12 @@ use App\Http\Controllers\Admin\SubCategory\SubCategoryController;
 use App\Http\Controllers\Admin\CoursesVisible\CoursesVisibleController;
 use App\Http\Controllers\Admin\Forum\ForumController;
 use App\Http\Controllers\Admin\SubSubCategory\SubSubCategoryController;
-
 Route::prefix('admin')->middleware('guest:admin')->group(function () {
-
     Route::get('register', [AdminRegisterController::class, 'create'])->name('admin.register');
     Route::post('register', [AdminRegisterController::class, 'store']);
-
     Route::get('login', [LoginController::class, 'create'])->name('admin.login');
     Route::post('login', [LoginController::class, 'store']);
-
 });
-
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::post('logout', [LoginController::class, 'destroy'])->name('admin.logout');
 
@@ -36,20 +30,16 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::delete('/hero/{hero}', 'delete')->name('hero.delete');
     });
     // ============================== Hero end ==============================
-
-
     // ============================== Category ==============================
     Route::controller(CategoryController::class)->group(function(){
         Route::get('/category', 'CategoryView')->name('category.index');
         Route::get('/category/create', 'CategoryCreate')->name('category.create');
         Route::post('/category/store', 'CategoryStore')->name('category.store');
         Route::get('/category/{category}/edit', 'CategoryEdit')->name('category.edit');
-        Route::get('/category/{category}/update', 'CategoryUpdate')->name('category.update');
+        Route::post('/category/{category}/update', [CategoryController::class, 'CategoryUpdate'])->name('category.update');
         Route::delete('/category/{category}', 'CategoryDelete')->name('category.delete');
     });
     // ============================== Category end ==============================
-
-
     // ============================== SubCategory ==============================
     Route::controller(SubCategoryController::class)->group(function(){
         Route::get('/subcategory', 'SubCategoryView')->name('subcategory.index');
@@ -60,7 +50,6 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::delete('/subcategory/{subcategory}', 'SubCategoryDelete')->name('subcategory.delete');
     });
     // ============================== SubCategory end ==============================
-
     // ============================== Sub SubCategory ==============================
     Route::controller(SubSubCategoryController::class)->group(function(){
         Route::get('/sub_subcategory', 'index')->name('sub_subcategory.index');
@@ -71,9 +60,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::delete('/sub_subcategory/{sub_subcategory}', 'delete')->name('sub_subcategory.delete');
     });
     // ============================== Sub SubCategory end ==============================
-
     // ============================== Video CRUD ==============================
-
 Route::controller(SubCoursesController::class)->group(function(){
     Route::get('/video', 'index')->name('video.index');
     Route::get('/subcourses/create', 'create')->name('subcourses.create');
@@ -83,8 +70,6 @@ Route::controller(SubCoursesController::class)->group(function(){
     Route::delete('/subcourses/{subcourses}', 'delete')->name('subcourses.delete');
 });
     // ============================== Video CRUD end ==============================
-
-
     // ============================== Courses Visible ==============================
     Route::controller(CoursesVisibleController::class)->group(function(){
     Route::get('/index', 'index')->name('admin.index');
@@ -92,10 +77,9 @@ Route::controller(SubCoursesController::class)->group(function(){
     Route::put('/visibility/update/{course_id}', action: 'updateVisibility')->name('admin.update-visibility');
     Route::post('/add-all-courses/{userId}', 'AddAllCourses')->name('admin.add-all-courses');
     Route::delete('/delete/{userId}', 'UsersDelete')->name('admin.users.delete');
+    Route::get('index/{userId}', [CoursesVisibleController::class, 'show_courses']);
     });
     // ============================== Courses Visible end ==============================
-
-
     // ============================== Forum ==============================
     Route::controller(ForumController::class)->group(function(){
         Route::get('/forum', action: 'index')->name('admin.forum.index');
@@ -104,5 +88,4 @@ Route::controller(SubCoursesController::class)->group(function(){
         // Route::post('/add-all-courses/{userId}', 'AddAllCourses')->name('admin.add-all-courses');
         });
     // ============================== Forum End ==============================
-
 });
